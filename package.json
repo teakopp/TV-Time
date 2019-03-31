@@ -1,0 +1,15 @@
+{
+  "name": "tv-time",
+  "version": "1.0.0",
+  "description": "An app for all your broadcasting needs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "teakopp",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.1.1"
+  }
+}

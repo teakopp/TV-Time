@@ -6,19 +6,37 @@ const path = require('path')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 
+var index = 0
+var length = 0
 
 document.onkeydown = (e) => {
     switch (e.keyCode) {
+        case 32:
+        let random = randomPick(length)
+        index = randomPick(length)
+        changeImage()
+
         case 37:
+          index -= 1
+          if (index <= 0){
+            index = length
+          }
+          console.log(index);
+          changeImage()
+          break;
 
-            break;
         case 39:
-
+          index += 1
+          if (index > length){
+            index = 0
+          }
+          console.log(index);
+          changeImage()
             break;
     }
 };
 
-function changeImage(direction){
+function changeImage(){
 
   getImages('gifs', (files) =>{
     let length = files.length
@@ -26,7 +44,7 @@ function changeImage(direction){
 
     var img = document.getElementById("img-main");
     img.src = new_image;
-  }
+  })
 }
 
 function randomPick(max){
@@ -50,8 +68,9 @@ function getImages(directory, callback){
 }
 
 getImages('gifs', (files) =>{
-  let length = files.length
-  let index = randomPick(length)
+  length = files.length - 1
+  console.log(length);
+  index = randomPick(length)
   let new_image = "./gifs/" + files[index]
   console.log(new_image);
 

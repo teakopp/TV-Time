@@ -5,7 +5,7 @@
 
 ### Still a work in progress...
 
-At the moment comes pre-packaged with all sorts of dope gifs.
+At the moment comes pre-packaged with all sorts of high quality gifs.
 Good for the office, family functions, or avoiding looking at nature at all costs while camping.
 
 ### To make this thing work

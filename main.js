@@ -7,36 +7,6 @@ const path = require('path')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
-let image
-
-function randomPick(max){
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
-function getImages(directory, callback){
-  images = []
-  fs.readdir(directory, (err, files) => {
-    if (err) {
-      console.log(err)
-    }
-    files.map(
-      (file) => {
-        images.push(file)
-      }
-    )
-    return callback(images)
-  })
-
-}
-
-
-getImages('gifs', (files) =>{
-  var length = files.length
-  var index = randomPick(length)
-  console.log(files[index]);
-})
-
-console.log(images);
 
 function createWindow () {
   // Create the browser window.

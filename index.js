@@ -2,9 +2,6 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-
 //Creates TV class for your viewing pleasure
 class TV {
 
@@ -16,7 +13,7 @@ class TV {
     this.htmlIdTag = htmlIdTag;
   }
 
-//recursive loop to get a different random number, if same one picked twice
+// Recursive loop to get a different random number, if same one picked twice
 // then sets it when unique number found
   changeToRandom(){
     let random = this.randomPick(this.length - 1)
@@ -29,7 +26,7 @@ class TV {
       this.setChannel()
     }
   }
-  
+
   // Increments image up one in the array of files
   // then sets it
   changeUp(){
@@ -53,7 +50,7 @@ class TV {
     this.setChannel()
   }
 
-// Gets a nice ol random number
+// Gets a random number
   randomPick(max){
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -85,7 +82,7 @@ class TV {
     return value
   }
 
-// use this fucntion to set display the new image after using other functions to make changes
+// Use this function to set display the new image after using other functions to make changes
   setChannel(){
     let new_image = this.directory + this.images[this.index]
     var img = document.getElementById(this.htmlIdTag);
@@ -96,7 +93,7 @@ class TV {
 let televison = new TV("./gifs/", "img-main")
 televison.getFiles()
 
-//Keeping this out of function, because I'm scared of weirdness it could potentially cause
+// Keeping this out of function, because I'm scared of weirdness it could potentially cause
 document.onkeydown = (e) => {
     switch (e.keyCode) {
         case 32:

@@ -2,7 +2,6 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 
@@ -61,7 +60,7 @@ class TV {
 // Goes through this.directory, and gets all files out of it.
 // I haven't tested puttin non-images so proceed with caution
 // Also beware of callback hell when messing with it
-  getFiles(callback){
+  getFiles(){
     var things = []
 
     fs.readdir(this.directory , (err, files) => {
@@ -76,6 +75,7 @@ class TV {
 
       this.images = this.callback(things)
       this.length = this.images.length - 1
+      this.changeToRandom()
     })
   }
 
@@ -87,18 +87,17 @@ class TV {
 // use this fucntion to set display the new image after using other functions to make changes
   setChannel(){
     let new_image = this.directory + this.images[this.index]
-    console.log(new_image);
     var img = document.getElementById(this.htmlIdTag);
     img.src = new_image;
   }
 
+
 }
 
 let televison = new TV("./gifs/", "img-main")
-televison.getFiles(() => {
-  televison.changeToRandom()
-  televison.setChannel()
-})
+televison.getFiles()
+
+
 
 //Keeping this out of function, because I'm scared of weirdness it could potentially cause
 document.onkeydown = (e) => {

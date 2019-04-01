@@ -57,8 +57,8 @@ class TV {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-// Goes through this.directory, and gets all files out of it.
-// I haven't tested puttin non-images so proceed with caution
+// Goes through this.directory and gets all files out of it.
+// I haven't tested putting non-images so proceed with caution
 // Also beware of callback hell when messing with it
   getFiles(){
     var things = []

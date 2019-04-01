@@ -6,7 +6,7 @@
 ### Still a work in progress...
 
 At the moment comes pre-packaged with all sorts of high quality gifs.
-Good for the office, family functions, or avoiding looking at nature at all costs while camping.
+Good for the office, family functions, or avoiding nature.
 
 ### To make this thing work
 1. Install npm dependencies (cd into directory then `npm install`)

@@ -15,5 +15,7 @@ Good for the office, family functions, or avoiding looking at nature at all cost
 
 ### Controls
 `Left Arrow` moves backwards through gif queue
+
 `Right Arrow` moves forwards through gif queue
+
 `Spacebar` gives you random pick

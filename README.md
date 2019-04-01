@@ -1,7 +1,9 @@
 # TV-Time
-An electron app for watching gifs or other animated images, fullscreen 
+## An electron app for watching gifs or other animated images, fullscreen 
 
-Still a work in progress...
+![TV](https://raw.githubusercontent.com/teakopp/TV-Time/master/default-images/90s-tv.jpeg)
+
+### Still a work in progress...
 
 At the moment comes pre-packaged with all sorts of dope gifs.
 Good for the office, family functions, or avoiding looking at nature at all costs while camping.

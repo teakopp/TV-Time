@@ -14,8 +14,8 @@ Good for the office, family functions, or avoiding looking at nature at all cost
 2. Start it up (`npm start`)
 
 ### Controls
-`Left Arrow` moves backwards through gif queue
+`Left Arrow` moves backwards through image queue
 
-`Right Arrow` moves forwards through gif queue
+`Right Arrow` moves forwards through image queue
 
 `Spacebar` gives you random pick

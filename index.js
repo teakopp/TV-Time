@@ -20,7 +20,7 @@ class TV {
 //recursive loop to get a different random number, if same one picked twice
 // then sets it when unique number found
   changeToRandom(){
-    let random = this.randomPick(this.length)
+    let random = this.randomPick(this.length - 1)
     console.log(this.index);
     if (this.index == random){
       this.changeToRandom()
@@ -70,7 +70,6 @@ class TV {
       }
       files.map(
         (file) => {
-          console.log(file);
           things.push(file)
         }
       )
@@ -88,6 +87,7 @@ class TV {
 // use this fucntion to set display the new image after using other functions to make changes
   setChannel(){
     let new_image = this.directory + this.images[this.index]
+    console.log(new_image);
     var img = document.getElementById(this.htmlIdTag);
     img.src = new_image;
   }
@@ -96,6 +96,7 @@ class TV {
 
 let televison = new TV("./gifs/", "img-main")
 televison.getFiles(() => {
+  televison.changeToRandom()
   televison.setChannel()
 })
 

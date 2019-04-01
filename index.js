@@ -29,6 +29,7 @@ class TV {
       this.setChannel()
     }
   }
+  
   // Increments image up one in the array of files
   // then sets it
   changeUp(){
@@ -90,14 +91,10 @@ class TV {
     var img = document.getElementById(this.htmlIdTag);
     img.src = new_image;
   }
-
-
 }
 
 let televison = new TV("./gifs/", "img-main")
 televison.getFiles()
-
-
 
 //Keeping this out of function, because I'm scared of weirdness it could potentially cause
 document.onkeydown = (e) => {

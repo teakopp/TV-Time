@@ -12,3 +12,8 @@ Good for the office, family functions, or avoiding looking at nature at all cost
 1. Install npm dependencies (cd into directory then `npm install`)
 1. Drag any Gifs or images into the gifs folder (Feel free to delete exisiting ones) 
 2. Start it up (`npm start`)
+
+### Controls
+`Left Arrow` moves backwards through gif queue
+`Right Arrow` moves forwards through gif queue
+`Spacebar` gives you random pick

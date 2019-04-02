@@ -110,6 +110,12 @@ class TV {
 
 }
 
+class Menu{
+  constructor(){
+
+  }
+}
+
 let televison = new TV("./gifs/", "img-main")
 televison.getFiles()
 

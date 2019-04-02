@@ -88,6 +88,26 @@ class TV {
     var img = document.getElementById(this.htmlIdTag);
     img.src = new_image;
   }
+
+  isImageHidden(){
+    var img = document.getElementById(this.htmlIdTag);
+     if(img.style.visibility == 'hidden'){
+       return true
+     }
+     else{
+       return false
+     }
+  }
+
+  hideImage(){
+    var img = document.getElementById(this.htmlIdTag);
+    img.style.visibility = 'hidden'
+  }
+  showImage(){
+    var img = document.getElementById(this.htmlIdTag);
+    img.style.visibility = 'visible'
+  }
+
 }
 
 let televison = new TV("./gifs/", "img-main")
@@ -96,16 +116,29 @@ televison.getFiles()
 // Keeping this out of function, because I'm scared of weirdness it could potentially cause
 document.onkeydown = (e) => {
     switch (e.keyCode) {
-        case 32:
-          televison.changeToRandom()
-          break;
+      // Esc Key
+      case 27:
+      if(televison.isImageHidden()){
+        televison.showImage()
+      }
+      else{
+        televison.hideImage()
+      }
+      break;
 
-        case 37:
-          televison.changeDown()
-          break;
+      // Right Arrow
+      case 32:
+        televison.changeToRandom()
+        break;
 
-        case 39:
-          televison.changeUp()
-          break;
+      // Left Arrow
+      case 37:
+        televison.changeDown()
+        break;
+
+      // Spacebar
+      case 39:
+        televison.changeUp()
+        break;
     }
 };

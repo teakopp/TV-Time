@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -7,6 +7,13 @@ const path = require('path')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+
+ipcMain.on('ondragstart', (event, filePath) => {
+  event.sender.startDrag({
+    file: filePath,
+    icon: '/path/to/icon.png'
+  })
+})
 
 function createWindow () {
   // Create the browser window.
@@ -18,7 +25,7 @@ function createWindow () {
 
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {

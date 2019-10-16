@@ -1,5 +1,5 @@
 {
-  "name": "tv-time",
+  "name": "Tv Time",
   "version": "1.0.0",
   "description": "An app for all your broadcasting needs",
   "main": "main.js",
@@ -10,6 +10,6 @@
   "author": "teakopp",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^4.1.1"
+    "electron": "1.4.15"
   }
 }

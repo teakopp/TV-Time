@@ -6,11 +6,12 @@ const path = require('path')
 class TV {
 
   constructor(directory, htmlIdTag){
-    this.directory = directory;
+    this.directory = path.resolve(__dirname, directory )
     this.index = 0;
     this.length = 0;
     this.images = [];
     this.htmlIdTag = htmlIdTag;
+    this.standByDisplayed = false
   }
 
 // Recursive loop to get a different random number, if same one picked twice
@@ -23,7 +24,8 @@ class TV {
     }
     else {
       this.index = random
-      this.setChannel()
+      let image = this.images[this.index]
+      this.setChannel(image, this.directory)
     }
   }
 
@@ -34,8 +36,8 @@ class TV {
     if (this.index > this.length){
       this.index = 0
     }
-    console.log(this.index);
-    this.setChannel()
+    let image = this.images[this.index]
+    this.setChannel(image, this.directory)
   }
 
 // Increments image down one in the array of files
@@ -46,8 +48,7 @@ class TV {
     if (this.index <= 0){
       this.index = this.length
     }
-    console.log(this.index);
-    this.setChannel()
+    this.setChannel(this.images[this.index], this.directory)
   }
 
 // Gets a random number
@@ -83,29 +84,99 @@ class TV {
   }
 
 // Use this function to set display the new image after using other functions to make changes
-  setChannel(){
-    let new_image = this.directory + this.images[this.index]
+  setChannel(image, directory){
+    let new_image = path.join(directory +'/' + image)
+    console.log(new_image);
     var img = document.getElementById(this.htmlIdTag);
     img.src = new_image;
   }
+
+  isImageHidden(){
+    var img = document.getElementById(this.htmlIdTag);
+     if(img.style.visibility == 'hidden'){
+       return true
+     }
+     else{
+       return false
+     }
+  }
+
+  hideImage(){
+    var img = document.getElementById(this.htmlIdTag);
+    img.style.visibility = 'hidden'
+  }
+  showImage(){
+    var img = document.getElementById(this.htmlIdTag);
+    img.style.visibility = 'visible'
+  }
+  displayPleaseStandByScreen(){
+    let image = 'giphy-2.gif'
+    let directory = __dirname + '/default-images/'
+    this.setChannel(image, directory)
+    this.standByDisplayed = true
+  }
+  hideDisplayPleaseStandByScreen(){
+    this.setChannel(this.images[this.index], this.directory)
+    this.standByDisplayed = false
+  }
+
+  addStatic(){
+    // this.displayPleaseStandByScreen()
+    setTimeout(() => {
+
+      this.displayPleaseStandByScreen()
+
+      setTimeout(() => {
+        this.hideDisplayPleaseStandByScreen()
+      }, 200)
+
+    }, 10)
+  }
+
+  automaticallyChangeChannel(){
+    setTimeout(() => {
+      this.addStatic()
+      this.changeToRandom()
+      this.automaticallyChangeChannel()
+      return
+    }, 1800000)
+  }
+
 }
 
-let televison = new TV("./gifs/", "img-main")
+let televison = new TV("gifs", "img-main")
 televison.getFiles()
+televison.automaticallyChangeChannel()
 
 // Keeping this out of function, because I'm scared of weirdness it could potentially cause
 document.onkeydown = (e) => {
     switch (e.keyCode) {
-        case 32:
-          televison.changeToRandom()
-          break;
+      // Esc Key
+      case 27:
+      if(televison.standByDisplayed){
+        televison.hideDisplayPleaseStandByScreen()
+      }
+      else{
+        televison.displayPleaseStandByScreen()
+      }
+      break;
 
-        case 37:
-          televison.changeDown()
-          break;
+      // Spacebar
+      case 32:
+        televison.addStatic()
+        televison.changeToRandom()
+        break;
 
-        case 39:
-          televison.changeUp()
-          break;
+      // Left Arrow
+      case 37:
+        televison.addStatic()
+        televison.changeDown()
+        break;
+
+      // Right Arrow
+      case 39:
+        televison.addStatic()
+        televison.changeUp()
+        break;
     }
 };

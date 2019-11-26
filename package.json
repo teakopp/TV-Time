@@ -10,6 +10,7 @@
   "author": "teakopp",
   "license": "ISC",
   "devDependencies": {
-    "electron": "1.4.15"
+    "electron": "1.4.15",
+    "eslint": "^6.7.1"
   }
 }

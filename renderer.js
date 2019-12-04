@@ -156,4 +156,4 @@ class TV {
 let televison = new TV("gifs", "img-main")
 televison.getFiles()
 televison.setChannelBasedOnHelpdeskSchedule()
-televison.checkForRefresh(60000, 0)
+televison.checkForRefresh(50000, 0)

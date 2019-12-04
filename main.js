@@ -1,7 +1,8 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
-const fs = require('fs')
-const os = require('os')
-const path = require('path')
+const {
+  app,
+  BrowserWindow,
+  ipcMain
+} = require('electron')
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -15,17 +16,23 @@ ipcMain.on('ondragstart', (event, filePath) => {
   })
 })
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
 
-  win = new BrowserWindow({ width: 800, height: 600, frame : false, fullscreen : true, nodeIntegration: true })
+  win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    frame: false,
+    fullscreen: true,
+    nodeIntegration: true
+  })
 
   // and load the index.html of the app.
   win.loadFile('index.html')
 
 
   // Open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {

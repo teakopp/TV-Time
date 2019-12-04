@@ -1,5 +1,4 @@
 const fs = require('fs')
-const os = require('os')
 const path = require('path')
 
 //Creates TV class for your viewing pleasure
@@ -34,7 +33,6 @@ class TV {
       this.images = this.callback(things)
       this.length = this.images.length - 1
       console.log(this.images);
-      this.setChannelBasedOnHelpdeskSchedule()
     })
   }
 
@@ -93,54 +91,62 @@ class TV {
   }
 
   refreshChannel() {
-    setTimeout(() => {
-      this.setChannelBasedOnHelpdeskSchedule()
-      this.refreshChannel()
-      return
-    }, 1800000)
+    this.setChannelBasedOnHelpdeskSchedule()
+    this.refreshChannel()
   }
 
-  getDayOfTheWeek(){
+  getDayOfTheWeek() {
     var date = new Date();
-    var number = date.getDay();
     return date.getDay();
   }
 
-  getCurrentTime(){
+  getCurrentHour() {
     let date = new Date();
     return date.getHours()
   }
 
-  getImageByDayOfWeek(){
+  getCurrentMinutes() {
+    let date = new Date();
+    return date.getMinutes()
+  }
+
+  getImageByDayOfWeek() {
     let day = this.getDayOfTheWeek()
-    if(day >= 1 && day <= 3 ){
+    if (day >= 1 && day <= 3) {
       return ("IT.gif")
-    }
-    else if(day == 4 || day == 5){
+    } else if (day == 4 || day == 5) {
       return ("IT-Hubot-Gif-off-thurs-fri.gif")
-    }
-    else{
+    } else {
       return ("IT-Hubot-Gif-closed.gif")
     }
   }
 
-  helpdeskIsOpen(){
-    let currentHour = this.getCurrentTime()
+  helpdeskIsOpen() {
+    let currentHour = this.getCurrentHour()
 
-    if(currentHour < 17 && currentHour >=  9){
+    if (currentHour < 17 && currentHour >= 9) {
       return true
-    }
-    else{
+    } else {
       return false
     }
   }
 
-  setChannelBasedOnHelpdeskSchedule(){
+  checkForRefresh(interval, minuteToRefresh) {
+
+    setInterval(() => {
+      let time = this.getCurrentMinutes()
+
+      if (time == minuteToRefresh) {
+        this.refreshChannel()
+      }
+    }, interval)
+  }
+
+  setChannelBasedOnHelpdeskSchedule() {
     let helpDeskIsOpen = this.helpdeskIsOpen()
-    if(helpDeskIsOpen){
+    if (helpDeskIsOpen) {
       televison.setChannel(televison.getImageByDayOfWeek(), "gifs")
-    }
-    else{
+    } else {
       televison.setChannel("IT-Hubot-Gif-closed.gif", "gifs")
     }
   }
@@ -150,4 +156,4 @@ class TV {
 let televison = new TV("gifs", "img-main")
 televison.getFiles()
 televison.setChannelBasedOnHelpdeskSchedule()
-televison.refreshChannel()
+televison.checkForRefresh(60000, 0)

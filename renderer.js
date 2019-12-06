@@ -44,13 +44,13 @@ class TV {
   // Use this function to set display the new image after using other functions to make changes
   setChannel(image, directory) {
     let new_image = path.join(directory + '/' + image)
-    console.log(new_image);
     var img = document.getElementById(this.htmlIdTag);
     img.src = new_image;
   }
 
   isImageHidden() {
     var img = document.getElementById(this.htmlIdTag);
+
     if (img.style.visibility == 'hidden') {
       return true
     } else {
@@ -83,9 +83,9 @@ class TV {
 
       this.displayPleaseStandByScreen()
 
-      setTimeout(() => {
-        this.hideDisplayPleaseStandByScreen()
-      }, 200)
+        setTimeout(() => {
+          this.hideDisplayPleaseStandByScreen()
+        }, 200)
 
     }, 10)
   }
@@ -121,10 +121,21 @@ class TV {
     }
   }
 
+  getHoursForHelpdesk(){
+      let day = this.getDayOfTheWeek();
+      if (day == 4 || day == 5){
+        return [16, 9]
+      }
+      else{
+        return [17, 9]
+      }
+  }
+
   helpdeskIsOpen() {
     let currentHour = this.getCurrentHour()
-
-    if (currentHour < 17 && currentHour >= 9) {
+    let helpdeskHours = this.getHoursForHelpdesk()
+    
+    if (currentHour < helpdeskHours[0] && currentHour >= helpdeskHours[1]) {
       return true
     } else {
       return false
@@ -157,3 +168,4 @@ let televison = new TV("gifs", "img-main")
 televison.getFiles()
 televison.setChannelBasedOnHelpdeskSchedule()
 televison.checkForRefresh(50000, 0)
+console.log(televison.helpdeskIsOpen());

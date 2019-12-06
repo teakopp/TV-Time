@@ -134,7 +134,7 @@ class TV {
   helpdeskIsOpen() {
     let currentHour = this.getCurrentHour()
     let helpdeskHours = this.getHoursForHelpdesk()
-    
+
     if (currentHour < helpdeskHours[0] && currentHour >= helpdeskHours[1]) {
       return true
     } else {
@@ -168,4 +168,3 @@ let televison = new TV("gifs", "img-main")
 televison.getFiles()
 televison.setChannelBasedOnHelpdeskSchedule()
 televison.checkForRefresh(50000, 0)
-console.log(televison.helpdeskIsOpen());
